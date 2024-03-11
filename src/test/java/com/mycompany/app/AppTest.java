@@ -41,29 +41,34 @@ public class AppTest
 
     @org.junit.Test
     public void testGenerated() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
-        assertNotNull(new App().password_generator("Hello", "World" , array , 7));
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        assertNotNull(new App().password_generator("Hello", "World" , array1 , array2,  7));
     }
     @org.junit.Test
     public void testInsufficientPasswordLength() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
-        assertNull(new App().password_generator("Hello", "World" , array , 5));
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        assertNull(new App().password_generator("Hello", "World" , array1 , array2, 5));
     }
     @org.junit.Test
     public void testEmptyArray() {
-        ArrayList<Integer> array = new ArrayList<>();
-        assertNull(new App().password_generator("Hello", "World" , array , 8));
+        ArrayList<Integer> array1 = new ArrayList<>();
+        ArrayList<Integer> array2 = new ArrayList<>();
+        assertNull(new App().password_generator("Hello", "World" , array1 , array2, 8));
     }
     @org.junit.Test
-    public void testInsufficientStrLength() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
-        assertNull(new App().password_generator("H", "W" , array , 8));
+    public void testInsufficientArrayLength() {
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2));
+        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2));
+        assertNull(new App().password_generator("Hello", "World" , array1 , array2, 8));
     }
 
     @org.junit.Test
-    public void testInsufficientListSize() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
-        assertNull(new App().password_generator("Hello", "World" , array , 10));
+    public void testArrayLengthNotEqual() {
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+        assertNull(new App().password_generator("Hello", "World" , array1 , array2, 10));
     }
 
 }
