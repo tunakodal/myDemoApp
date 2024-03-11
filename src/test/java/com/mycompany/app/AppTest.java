@@ -59,9 +59,9 @@ public class AppTest
     }
     @org.junit.Test
     public void testInsufficientArrayLength() {
-        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2));
-        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2));
-        assertNull(new App().password_generator("Hello", "World" , array1 , array2, 8));
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        assertNull(new App().password_generator("Hello", "World" , array1 , array2, 10));
     }
 
     @org.junit.Test

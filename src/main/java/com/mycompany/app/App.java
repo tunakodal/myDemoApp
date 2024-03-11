@@ -18,7 +18,7 @@ public class App
         //Chooses a char according to the number from related list.
 
         if((a_list1.size() == 0 || a_list2.size() == 0|| str1.length() == 0 || str2.length() == 0 || pw_len == 0 ) ||
-                (a_list1.size() <= pw_len/2 || a_list2.size() <= pw_len/2 ) ||
+                (a_list1.size() < pw_len || a_list2.size() < pw_len ) ||
                 a_list1.size() != a_list2.size() )
             return null;
 
