@@ -13,14 +13,33 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class App
 {
-    public static boolean search(ArrayList<Integer> array, int e) {
-        System.out.println("inside search");
-        if (array == null) return false;
+    public static String password_generator(String str1, String str2 ,ArrayList<Integer> a_list, int pw_len){
+        //Creates a random password using two strings and one array list.
+        //Chooses a char according to the number from related list.
 
-        for (int elt : array) {
-            if (elt == e) return true;
+        if((a_list.size() == 0 || str1.length() == 0 || str2.length() == 0 || pw_len == 0 || a_list.size() < pw_len) ||
+                (str1.length() <= pw_len/2 || str2.length() <= pw_len/2 ) )
+            return null;
+
+        if (pw_len <= 6)
+            return null;
+
+        StringBuilder stringBuilder = new StringBuilder("");
+
+        for (int i = 0; i < a_list.size() ; i++) {
+            if (i == pw_len - 1)
+                break;
+
+            if (i%2 == 0){
+                stringBuilder.append(str1.charAt(a_list.get(i)%str1.length())); //for i%2 == 0, char comes from str1
+            }
+            else
+                stringBuilder.append(str2.charAt(a_list.get(i)%str2.length())); //for i%2 == 0, char comes from str2
         }
-        return false;
+
+        //arbitrary chars index has determined by number%str.len
+
+        return stringBuilder.toString();
     }
 
     public static void main(String[] args) {
@@ -29,11 +48,9 @@ public class App
         get("/", (req, res) -> "Hello, World");
 
         post("/compute", (req, res) -> {
-            //System.out.println(req.queryParams("input1"));
-            //System.out.println(req.queryParams("input2"));
 
-            String input1 = req.queryParams("input1");
-            java.util.Scanner sc1 = new java.util.Scanner(input1);
+            String list = req.queryParams("list");
+            java.util.Scanner sc1 = new java.util.Scanner(list);
             sc1.useDelimiter("[;\r\n]+");
             java.util.ArrayList<Integer> inputList = new java.util.ArrayList<>();
             while (sc1.hasNext())
@@ -44,10 +61,13 @@ public class App
             System.out.println(inputList);
 
 
-            String input2 = req.queryParams("input2").replaceAll("\\s","");
-            int input2AsInt = Integer.parseInt(input2);
+            String str1 = req.queryParams("str1").replaceAll("\\s","");
+            String str2 = req.queryParams("str2").replaceAll("\\s","");
 
-            boolean result = App.search(inputList, input2AsInt);
+            String pw_len = req.queryParams("pw_len").replaceAll("\\s","");
+            int pw_length = Integer.parseInt(pw_len);
+
+            String result = App.password_generator(str1, str2 ,inputList, pw_length);
 
             Map map = new HashMap();
             map.put("result", result);

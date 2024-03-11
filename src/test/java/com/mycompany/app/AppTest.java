@@ -40,23 +40,30 @@ public class AppTest
     }
 
     @org.junit.Test
-    public void testFound() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertTrue(new App().search(array, 4));
+    public void testGenerated() {
+        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        assertNotNull(new App().password_generator("Hello", "World" , array , 7));
     }
     @org.junit.Test
-    public void tstNotFound() {
-        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        assertFalse(new App().search(array, 5));
+    public void testInsufficientPasswordLength() {
+        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        assertNull(new App().password_generator("Hello", "World" , array , 5));
     }
     @org.junit.Test
     public void testEmptyArray() {
         ArrayList<Integer> array = new ArrayList<>();
-        assertFalse(new App().search(array, 1));
+        assertNull(new App().password_generator("Hello", "World" , array , 8));
     }
     @org.junit.Test
-    public void testNull() {
-        assertFalse(new App().search(null, 1));
+    public void testInsufficientStrLength() {
+        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        assertNull(new App().password_generator("H", "W" , array , 8));
+    }
+
+    @org.junit.Test
+    public void testInsufficientListSize() {
+        ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
+        assertNull(new App().password_generator("Hello", "World" , array , 10));
     }
 
 }
