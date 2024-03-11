@@ -65,8 +65,8 @@ public class App
             System.out.println(inputList);
 
             String list2 = req.queryParams("list2");
-            java.util.Scanner sc2 = new java.util.Scanner(list);
-            sc1.useDelimiter("[;\r\n]+");
+            java.util.Scanner sc2 = new java.util.Scanner(list2);
+            sc2.useDelimiter("[;\r\n]+");
             java.util.ArrayList<Integer> inputList2 = new java.util.ArrayList<>();
             while (sc2.hasNext())
             {
