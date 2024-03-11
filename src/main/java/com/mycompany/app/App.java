@@ -27,7 +27,7 @@ public class App
         StringBuilder stringBuilder = new StringBuilder("");
 
         for (int i = 0; i < a_list.size() ; i++) {
-            if (i == pw_len - 1)
+            if (i == pw_len)
                 break;
 
             if (i%2 == 0){
